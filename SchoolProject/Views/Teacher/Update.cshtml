@@ -1,0 +1,34 @@
+﻿@model SchoolProject.Models.Teacher
+@{
+    ViewBag.Title = "Update";
+}
+<a class="btn btn-primary" href="/Teacher/Show/@Model.TeacherId" >Back</a>
+<h2>Update Teacher</h2>
+
+<form method="post" action="/Teacher/Update/@Model.TeacherId">
+    <div style="margin-bottom: 6px;">
+        <label for="TeacherFname">First Name:</label>
+        <input type="text" id="TeacherFname" name="TeacherFname"  value="@Model.TeacherFname" />
+        
+    </div>
+    <div style="margin-bottom: 6px;">
+        <label for="TeacherLname">Last Name:</label>
+        <input type="text" id="TeacherLname" name="TeacherLname"  value="@Model.TeacherLname"/>
+        
+    </div>
+    <div style="margin-bottom: 6px;">
+        <label for="EmployeeNumber">Employee Number:</label>
+        <input type="text" id="EmployeeNumber" name="EmployeeNumber"  value="@Model.EmployeeNumber"/>
+        
+    </div>
+    <div style="margin-bottom: 6px;">
+        <label for="Salary">Salary:</label>
+        <input type="number" id="Salary" min="0" value="@Model.Salary" step=".01" name="Salary" asp-for="Salary" />
+       
+    </div>
+    <div style="margin-bottom: 6px;">
+        <input type="submit" class="btn btn-primary" value="update teacher"/>
+    </div>
+</form>
+
+

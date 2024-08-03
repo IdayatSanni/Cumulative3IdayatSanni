@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SchoolProject.Models.Teacher>
+@{
+    ViewBag.Title = "List";
+}
+
+
+
+<div id="containerlist">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a href="/Teacher/New" class="btn btn-primary">Add Teacher</a>
+        <form action="/Teacher/List" method="GET" style="width: 70%; display:flex; gap: 6px;">
+            <input type="text" name="SearchKey" class="input-group input-group-lg" style="max-width: 500px;" />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+
+        </form>
+    </nav>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-danger">
+            No teacher matches your search. Try again
+        </div>
+    }
+    else
+    {
+        <h2>List Of The Teachers</h2>
+        foreach (var teacher in Model)
+        {
+            <div class="list-group-item row show-class">
+
+                <div class="col-md-12">
+                    <a class="class-link" href="/Teacher/Show/@teacher.TeacherId">@teacher.TeacherFname @teacher.TeacherLname</a>
+                </div>
+            </div>
+        }
+    }
+</div>
+
