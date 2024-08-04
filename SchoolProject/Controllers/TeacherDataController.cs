@@ -243,6 +243,22 @@ namespace SchoolProject.Controllers
             Conn.Close();
         }
 
+        /// <summary>
+        /// Updates a teacher in the MySQL Database. 
+        /// </summary>
+        /// <param name="id">id of the teacher we want to update</param>
+        /// <param name="InfoTeacher">An object that contains new information of the Teacher in the already in the database.</param>
+        /// <example>
+        /// POST api/TeacherData/UpdateTeacher
+        /// FORM DATA / POST DATA / REQUEST BODY 
+        /// {
+        /// "TeacherId" => 4
+        ///	"TeacherFname":"Idayat",
+        ///	"TeacherLname":"Sanni",
+        ///	"EmployeeNumber":"T903",
+        ///	"Salary":90.00
+        /// }
+        /// </example>
         public void UpdateTeacher(int id, [FromBody] Teacher InfoTeacher)
         {
             
@@ -258,7 +274,7 @@ namespace SchoolProject.Controllers
             // SQL Query
             cmd.CommandText = "update teachers set teacherfname=@TeacherFname, teacherlname=@TeacherLname, employeenumber=@EmployeeNumber, salary=@Salary where teacherid=@TeacherId";
             cmd.Parameters.AddWithValue("@TeacherFname", InfoTeacher.TeacherFname);
-            cmd.Parameters.AddWithValue("@TeacherLname",    InfoTeacher.TeacherLname);
+            cmd.Parameters.AddWithValue("@TeacherLname", InfoTeacher.TeacherLname);
             cmd.Parameters.AddWithValue("@EmployeeNumber", InfoTeacher.EmployeeNumber);
             cmd.Parameters.AddWithValue("@Salary", InfoTeacher.Salary);
             cmd.Parameters.AddWithValue("@TeacherId", id);
@@ -267,5 +283,6 @@ namespace SchoolProject.Controllers
 
             Conn.Close();
         }
+
     }
 }
