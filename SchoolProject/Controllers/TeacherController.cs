@@ -55,7 +55,7 @@ namespace SchoolProject.Controllers
 
         //Post: /Teacher/Create
         [HttpPost]
-        [EnableCors(origins:"*", methods:"*", headers:"*")]
+        
         public ActionResult Create(string TeacherFname, string TeacherLname, string EmployeeNumber, decimal? Salary)
         {
             // identify that this method is running

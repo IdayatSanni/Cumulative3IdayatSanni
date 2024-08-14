@@ -2,33 +2,89 @@
 @{
     ViewBag.Title = "Update";
 }
-<a class="btn btn-primary" href="/Teacher/Show/@Model.TeacherId"  >Back</a>
+
+<title>Update Teacher</title>
+
+
+<a class="btn btn-primary" href="/Teacher/Show/@Model.TeacherId">Back</a>
 <h2>Update Teacher</h2>
 
-<form method="post" action="/Teacher/Update/@Model.TeacherId">
+<form method="post" action="/Teacher/Update/@Model.TeacherId" id="form">
+    <div id="errorMessages" style="color: red;"></div>
     <div style="margin-bottom: 6px;">
         <label for="TeacherFname">First Name:</label>
-        <input type="text" id="TeacherFname" name="TeacherFname"  value="@Model.TeacherFname" />
-        
+        <input type="text" id="TeacherFname" name="TeacherFname" value="@Model.TeacherFname" />
+        <div id="errorFname" style="color: red; display:none">Please enter a first name</div>
     </div>
     <div style="margin-bottom: 6px;">
         <label for="TeacherLname">Last Name:</label>
-        <input type="text" id="TeacherLname" name="TeacherLname"  value="@Model.TeacherLname"/>
-        
+        <input type="text" id="TeacherLname" name="TeacherLname" value="@Model.TeacherLname" />
+        <div id="errorLname" style="color: red; display:none">Please enter a last name</div>
     </div>
     <div style="margin-bottom: 6px;">
         <label for="EmployeeNumber">Employee Number:</label>
-        <input type="text" id="EmployeeNumber" name="EmployeeNumber"  value="@Model.EmployeeNumber"/>
-        
+        <input type="text" id="EmployeeNumber" name="EmployeeNumber" value="@Model.EmployeeNumber" />
+        <div id="errorEmployee" style="color: red; display:none">Please enter the employee number</div>
     </div>
     <div style="margin-bottom: 6px;">
         <label for="Salary">Salary:</label>
         <input type="number" id="Salary" min="0" value="@Model.Salary" step=".01" name="Salary" asp-for="Salary" />
-       
+        <div id="errorSalary" style="color: red; display:none">Please enter the salary</div>
     </div>
+
     <div style="margin-bottom: 6px;">
-        <input type="submit" class="btn btn-primary" value="update teacher"/>
+        <input type="submit" class="btn btn-primary" value="update teacher" id="btn" />
     </div>
 </form>
 
 
+ 
+<script>
+    // client side validation
+    function validateFormFields() {
+        // retrieve form values
+        var fname = document.getElementById('TeacherFname').value;
+        var lname = document.getElementById('TeacherLname').value;
+        var empNumber = document.getElementById('EmployeeNumber').value;
+        var salary = document.getElementById('Salary').value;
+
+        // retrieve error messages
+        var errorFirst = document.getElementById('errorFname');
+        var errorLast = document.getElementById('errorLname');
+        var errorEmp = document.getElementById('errorEmployee');
+        var errorSalary = document.getElementById('errorSalary');
+
+        // Validation
+        var valid = true;
+        if (fname === '') {
+            errorFirst.style.display = "block";
+            valid = false;
+        }
+        if (lname === '') {
+            errorLast.style.display = "block";
+            valid = false;
+        }
+        if (empNumber === '') {
+            errorEmp.style.display = "block";
+            valid = false;
+        }
+        if (isNaN(salary) || salary <= 0) {
+            errorSalary.style.display = "block";
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    // Get the form
+    var form = document.getElementById("form")
+    form.onsubmit = validateForm
+    function validateForm(event) {
+        var formIsValid = validateFormFields();
+
+        // If form is not valid, prevent form submission
+        if (!formIsValid) {
+            event.preventDefault();
+        }
+    };
+</script>

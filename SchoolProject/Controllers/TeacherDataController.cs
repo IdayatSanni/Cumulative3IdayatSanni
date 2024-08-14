@@ -202,7 +202,7 @@ namespace SchoolProject.Controllers
 
             Conn.Close();
         }
-        [HttpPost]
+
         /// <summary>
         /// Adds a teacher to the MySQL Database. 
         /// </summary>
@@ -218,6 +218,7 @@ namespace SchoolProject.Controllers
         ///	"HireDate":currentdate,
         /// }
         /// </example>
+        [HttpPost]
         public void AddTeacher([FromBody] Teacher NewTeacher)
         {
             //Exit method if model fields are not included.
