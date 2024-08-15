@@ -250,7 +250,7 @@ namespace SchoolProject.Controllers
         /// <param name="id">id of the teacher we want to update</param>
         /// <param name="InfoTeacher">An object that contains new information of the Teacher in the already in the database.</param>
         /// <example>
-        /// POST api/TeacherData/UpdateTeacher
+        /// POST api/TeacherData/UpdateTeacher/{id}
         /// FORM DATA / POST DATA / REQUEST BODY 
         /// {
         /// "TeacherId" => 4
